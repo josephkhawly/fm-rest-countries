@@ -1,13 +1,14 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export async function getStaticPaths() {
-  const countries = await fetch('https://restcountries.com/v3.1/all').then(
-    (res) => res.json()
-  )
+  const countries = await fetch(
+    'https://restcountries.com/v3.1/all?fields=cca3'
+  ).then((res) => res.json())
   return {
     paths: countries.map((country) => ({
-      params: { name: country.cca2.toLowerCase() },
+      params: { name: country.cca3.toLowerCase() },
     })),
     fallback: false,
   }
@@ -15,11 +16,23 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
   const country = await fetch(
-    `https://restcountries.com/v3.1/alpha/${params.name}`
+    `https://restcountries.com/v3.1/alpha/${params.name}?fields=name,flags,population,region,capital,subregion,tld,currencies,languages,borders`
   ).then((res) => res.json())
 
+  const borderCountries = []
+
+  for (const border of country.borders) {
+    const borderCountry = await fetch(
+      `https://restcountries.com/v3.1/alpha/${border.toLowerCase()}?fields=name,cca3`
+    ).then((res) => res.json())
+    borderCountries.push(borderCountry)
+  }
+
   return {
-    props: { country: country[0] },
+    props: {
+      country,
+      borderCountries,
+    },
   }
 }
 
@@ -31,7 +44,7 @@ function Detail({ name, value }) {
   )
 }
 
-export default function CountryDetails({ country }) {
+export default function CountryDetails({ country, borderCountries }) {
   const {
     name,
     flags,
@@ -96,6 +109,15 @@ export default function CountryDetails({ country }) {
                 value={valuesToString(languages, ([, value]) => value)}
               />
             </div>
+          </div>
+
+          <div>
+            <h3 className="mb-4 text-xl font-bold">Border Countries:</h3>
+            {borderCountries.map((c) => (
+              <Link key={c.cca3} href={`/country/${c.cca3.toLowerCase()}`}>
+                {c.name.common}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

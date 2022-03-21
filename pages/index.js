@@ -2,9 +2,9 @@ import Head from 'next/head'
 import { CountryCard } from '../components/CountryCard'
 
 export async function getStaticProps() {
-  const countries = await fetch('https://restcountries.com/v3.1/all').then(
-    (res) => res.json()
-  )
+  const countries = await fetch(
+    'https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags,population,region,cca3'
+  ).then((res) => res.json())
 
   return {
     props: {
