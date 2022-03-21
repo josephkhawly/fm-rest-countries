@@ -4,11 +4,11 @@ import Link from 'next/link'
 
 export async function getStaticPaths() {
   const countries = await fetch(
-    'https://restcountries.com/v3.1/all?fields=cca3'
+    'https://restcountries.com/v3.1/all?fields=ccn3'
   ).then((res) => res.json())
   return {
     paths: countries.map((country) => ({
-      params: { name: country.cca3.toLowerCase() },
+      params: { name: country.ccn3.toLowerCase() },
     })),
     fallback: false,
   }
@@ -21,17 +21,17 @@ export async function getStaticProps({ params }) {
 
   const borderCountries = []
 
-  for (const border of country.borders) {
-    const borderCountry = await fetch(
-      `https://restcountries.com/v3.1/alpha/${border.toLowerCase()}?fields=name,cca3`
-    ).then((res) => res.json())
-    borderCountries.push(borderCountry)
-  }
+  // for (const border of country.borders) {
+  //   const borderCountry = await fetch(
+  //     `https://restcountries.com/v3.1/alpha/${border.toLowerCase()}`
+  //   ).then((res) => res.json())
+  //   borderCountries.push(borderCountry[0])
+  // }
 
   return {
     props: {
       country,
-      borderCountries,
+      // borderCountries,
     },
   }
 }
@@ -44,7 +44,7 @@ function Detail({ name, value }) {
   )
 }
 
-export default function CountryDetails({ country, borderCountries }) {
+export default function CountryDetails({ country }) {
   const {
     name,
     flags,
@@ -113,11 +113,11 @@ export default function CountryDetails({ country, borderCountries }) {
 
           <div>
             <h3 className="mb-4 text-xl font-bold">Border Countries:</h3>
-            {borderCountries.map((c) => (
-              <Link key={c.cca3} href={`/country/${c.cca3.toLowerCase()}`}>
+            {/* {borderCountries.map((c) => (
+              <Link key={c.ccn3} href={`/country/${c.ccn3.toLowerCase()}`}>
                 {c.name.common}
               </Link>
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
