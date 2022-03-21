@@ -45,8 +45,13 @@ export default function CountryDetails({ country }) {
   } = country
   const formattedPopulation = population.toLocaleString('en-US')
 
-  const valuesToString = (obj, mapper) =>
-    Object.entries(obj).map(mapper).join(', ')
+  const valuesToString = (obj, mapper) => {
+    if (obj) {
+      return Object.entries(obj).map(mapper).join(', ')
+    }
+
+    return 'Unknown'
+  }
 
   return (
     <main className="container mx-auto my-8 w-full px-8 md:my-16">
