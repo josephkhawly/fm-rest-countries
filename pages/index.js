@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import { CountryCard } from '../components/CountryCard'
 
 export async function getStaticProps() {
   const countries = await fetch('https://restcountries.com/v3.1/all')
@@ -21,21 +21,10 @@ export default function Home({ countries }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className='grid grid-cols-1 md:grid-cols-4 gap-8'>
-        {countries.map(country => (
-          <div key={country.name.common} className='shadow-md'>
-            <Image
-              src={country.flags.svg}
-              alt={`Flag of ${country.name.common}`}
-              width={900}
-              height={600}
-              layout='responsive'
-            />
-            <div className='p-5 bg-white'>
-              <h2 className='font-bold text-xl'>{country.name.common}</h2>
-            </div>
-          </div>
-        ))}
+        {countries.map(country => <CountryCard key={country.name.common} country={country} />)}
       </div>
     </main>
   )
 }
+
+
