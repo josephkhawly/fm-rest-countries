@@ -3,7 +3,7 @@ import { CountryCard } from '../components/CountryCard'
 
 export async function getStaticProps() {
   const countries = await fetch(
-    'https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags,population,region,ccn3'
+    'https://restcountries.com/v3.1/all?fields=name,capital,currencies,flags,population,region,cca2'
   ).then((res) => res.json())
 
   return {

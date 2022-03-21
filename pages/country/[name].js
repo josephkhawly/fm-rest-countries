@@ -4,11 +4,11 @@ import Link from 'next/link'
 
 export async function getStaticPaths() {
   const countries = await fetch(
-    'https://restcountries.com/v3.1/all?fields=ccn3'
+    'https://restcountries.com/v3.1/all?fields=cca2'
   ).then((res) => res.json())
   return {
     paths: countries.map((country) => ({
-      params: { name: country.ccn3.toLowerCase() },
+      params: { name: country.cca2.toLowerCase() },
     })),
     fallback: false,
   }
@@ -114,7 +114,7 @@ export default function CountryDetails({ country }) {
           <div>
             <h3 className="mb-4 text-xl font-bold">Border Countries:</h3>
             {/* {borderCountries.map((c) => (
-              <Link key={c.ccn3} href={`/country/${c.ccn3.toLowerCase()}`}>
+              <Link key={c.cca2} href={`/country/${c.cca2.toLowerCase()}`}>
                 {c.name.common}
               </Link>
             ))} */}
