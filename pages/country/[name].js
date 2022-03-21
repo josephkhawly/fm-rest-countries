@@ -24,7 +24,6 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Details({ country }) {
-  console.log(country)
   return (
     <main className="container mx-auto my-8 w-full px-8 md:my-16">
       <Head>

@@ -1,7 +1,7 @@
 module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    './pages/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -13,8 +13,8 @@ module.exports = {
         'lm-background': '#fafafa',
       },
       fontSize: {
-        'homepage': '14px',
-        'detail': '16px',
+        homepage: '14px',
+        detail: '16px',
       },
       fontFamily: {
         sans: ['Nunito Sans', 'sans-serif'],

@@ -1,13 +1,13 @@
-import Link from "next/link";
+import Link from 'next/link'
 
 export default function Header() {
-    return (
-        <header className="shadow-md h-16 z-10 bg-white w-full">
-            <div className="container mx-auto w-full flex items-center justify-between h-full">
-                <Link href="/" passHref>
-                    <a className="font-extrabold text-2xl">Where in the world?</a>
-                </Link>
-            </div>
-        </header>
-    )
+  return (
+    <header className="z-10 h-16 w-full bg-white shadow-md">
+      <div className="container mx-auto flex h-full w-full items-center justify-between">
+        <Link href="/" passHref>
+          <a className="text-2xl font-extrabold">Where in the world?</a>
+        </Link>
+      </div>
+    </header>
+  )
 }
