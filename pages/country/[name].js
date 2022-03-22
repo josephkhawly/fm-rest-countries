@@ -21,17 +21,17 @@ export async function getStaticProps({ params }) {
 
   const borderCountries = []
 
-  // for (const border of country.borders) {
-  //   const borderCountry = await fetch(
-  //     `https://restcountries.com/v3.1/alpha/${border.toLowerCase()}`
-  //   ).then((res) => res.json())
-  //   borderCountries.push(borderCountry[0])
-  // }
+  for (const border of country.borders) {
+    const borderCountry = await fetch(
+      `https://restcountries.com/v3.1/alpha/${border.toLowerCase()}`
+    ).then((res) => res.json())
+    borderCountries.push(borderCountry[0])
+  }
 
   return {
     props: {
       country,
-      // borderCountries,
+      borderCountries,
     },
   }
 }
@@ -44,7 +44,7 @@ function Detail({ name, value }) {
   )
 }
 
-export default function CountryDetails({ country }) {
+export default function CountryDetails({ country, borderCountries }) {
   const {
     name,
     flags,
@@ -83,7 +83,7 @@ export default function CountryDetails({ country }) {
         />
         <div>
           <h2 className="mb-4 text-xl font-bold">{name.common}</h2>
-          <div className="grid grid-cols-1 gap-x-8 md:grid-cols-2">
+          <div className="mb-8 grid grid-cols-1 gap-x-8 md:grid-cols-2">
             <div className="mb-8 md:mb-0">
               <Detail
                 name="Native Name"
@@ -111,13 +111,24 @@ export default function CountryDetails({ country }) {
             </div>
           </div>
 
-          <div>
-            <h3 className="mb-4 text-xl font-bold">Border Countries:</h3>
-            {/* {borderCountries.map((c) => (
-              <Link key={c.cca2} href={`/country/${c.cca2.toLowerCase()}`}>
-                {c.name.common}
-              </Link>
-            ))} */}
+          <div className="flex flex-wrap">
+            <h3 className="mr-5 inline-block text-detail font-bold">
+              Border Countries:
+            </h3>
+
+            {borderCountries.length > 0
+              ? borderCountries.map((c) => (
+                  <Link
+                    key={c.cca2}
+                    href={`/country/${c.cca2.toLowerCase()}`}
+                    passHref
+                  >
+                    <div className="hover-transition mr-3 mb-5 inline-block cursor-pointer rounded-sm bg-white px-5 py-1 shadow-md hover:-translate-y-1">
+                      {c.name.common}
+                    </div>
+                  </Link>
+                ))
+              : 'None'}
           </div>
         </div>
       </div>

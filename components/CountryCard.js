@@ -7,7 +7,7 @@ export function CountryCard({ country }) {
 
   return (
     <Link href={`country/${country.cca2.toLowerCase()}`} passHref>
-      <div className="cursor-pointer shadow-md transition duration-300 ease-in-out hover:-translate-y-2">
+      <div className="hover-transition cursor-pointer shadow-md hover:-translate-y-2">
         <Image
           src={flags.svg}
           alt={`Flag of ${name.common}`}
