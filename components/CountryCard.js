@@ -6,7 +6,7 @@ export function CountryCard({ country }) {
   const formattedPopulation = population.toLocaleString('en-US')
 
   return (
-    <Link href={`country/${country.cca2.toLowerCase()}`} passHref>
+    <Link href={`/country/${country.cca2.toLowerCase()}`} passHref>
       <div className="hover-transition cursor-pointer shadow-md hover:-translate-y-2">
         <Image
           src={flags.svg}
