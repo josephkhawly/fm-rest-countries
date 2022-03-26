@@ -5,7 +5,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Header />
-      <Component {...pageProps} />
+      <main className="container mx-auto my-8 w-full px-8 md:my-16">
+        <Component {...pageProps} />
+      </main>
     </>
   )
 }
