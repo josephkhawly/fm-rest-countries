@@ -45,12 +45,15 @@ export default function Home({ countries }) {
       <div className="container mb-6 flex items-center justify-between">
         <input
           type="text"
-          className="bg-white px-4 py-4 shadow-md"
+          className="bg-white px-4 py-4 shadow-md dark:bg-dm-element"
           placeholder="Search for a country"
           onChange={search}
         />
 
-        <select onChange={filterByRegion} className="p-4 pr-8 shadow-md">
+        <select
+          onChange={filterByRegion}
+          className="p-4 pr-8 shadow-md dark:bg-dm-element"
+        >
           <option value={'All'}>Filter by Region</option>
           <option value={'Africa'}>Africa</option>
           <option value={'Americas'}>Americas</option>

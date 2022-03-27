@@ -15,7 +15,7 @@ export function CountryCard({ country }) {
           height={600}
           layout="responsive"
         />
-        <div className="bg-white px-5 pt-5 pb-10">
+        <div className="bg-white px-5 pt-5 pb-10 dark:bg-dm-element">
           <h2 className="mb-4 text-xl font-bold">{name.common}</h2>
           <p className="mb-1 text-homepage">
             <span className="font-semibold">Population:</span>{' '}

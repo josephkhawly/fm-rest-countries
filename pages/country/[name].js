@@ -76,7 +76,7 @@ export default function CountryDetails({ country, borderCountries }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <button
-        className="hover-transition mr-3 mb-5 inline-block cursor-pointer rounded-sm bg-white px-9 py-2 shadow-md hover:-translate-y-1"
+        className="hover-transition mr-3 mb-5 inline-block cursor-pointer rounded-sm bg-white px-9 py-2 shadow-md hover:-translate-y-1 dark:bg-dm-element"
         onClick={() => router.back()}
       >
         &larr; Back
@@ -131,7 +131,7 @@ export default function CountryDetails({ country, borderCountries }) {
                     href={`/country/${c.cca2.toLowerCase()}`}
                     passHref
                   >
-                    <div className="hover-transition mr-3 mb-5 inline-block cursor-pointer rounded-sm bg-white px-5 py-1 shadow-md hover:-translate-y-1">
+                    <div className="hover-transition mr-3 mb-5 inline-block cursor-pointer rounded-sm bg-white px-5 py-1 shadow-md hover:-translate-y-1 dark:bg-dm-element">
                       {c.name.common}
                     </div>
                   </Link>
